@@ -1,0 +1,64 @@
+{
+  "name": "OpenRAN UX Wireframe",
+  "type": "DOCUMENT",
+  "children": [
+    {
+      "name": "Home Desktop",
+      "type": "FRAME",
+      "width": 1440,
+      "height": 3000,
+      "children": [
+        {
+          "name": "Navbar",
+          "type": "FRAME",
+          "height": 80
+        },
+        {
+          "name": "Hero",
+          "type": "FRAME",
+          "height": 600
+        },
+        {
+          "name": "Para quem \u00e9",
+          "type": "FRAME",
+          "height": 300
+        },
+        {
+          "name": "O que voc\u00ea pode fazer",
+          "type": "FRAME",
+          "height": 300
+        },
+        {
+          "name": "Testbed",
+          "type": "FRAME",
+          "height": 400
+        },
+        {
+          "name": "Como funciona",
+          "type": "FRAME",
+          "height": 300
+        },
+        {
+          "name": "Documenta\u00e7\u00e3o",
+          "type": "FRAME",
+          "height": 300
+        },
+        {
+          "name": "Not\u00edcias",
+          "type": "FRAME",
+          "height": 300
+        },
+        {
+          "name": "Parceiros",
+          "type": "FRAME",
+          "height": 200
+        },
+        {
+          "name": "Footer",
+          "type": "FRAME",
+          "height": 200
+        }
+      ]
+    }
+  ]
+}

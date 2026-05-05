@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GreenRAN — Infraestrutura Open RAN sustentável para pesquisa e inovação em 5G, com foco em agro inteligente e campi conectados.">
+    <meta name="keywords" content="Open RAN, 5G, GreenRAN, xApps, rApps, IA, agricultura inteligente, smart campus, UFPA, RNP">
+    <meta name="author" content="GreenRAN Project">
+    <meta property="og:title" content="GreenRAN — Open RAN Sustentável">
+    <meta property="og:description" content="Infraestrutura Open RAN sustentável para pesquisa e inovação em 5G.">
+    <meta property="og:type" content="website">
+    <title>GreenRAN — Open RAN Sustentável para o Agro e Campi Inteligentes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        dark: '#0F172A',
+                        muted: '#6B7280',
+                    },
+                    maxWidth: {
+                        'site': '1200px',
+                    },
+                    borderRadius: {
+                        'card': '12px',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="font-['Inter'] bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-nav-bg)] backdrop-blur-md border-b border-[var(--color-border)] transition-colors duration-300" role="navigation" aria-label="Navegação principal">
+        <div class="max-w-site mx-auto px-6 h-[72px] flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 font-bold text-xl tracking-tight text-primary" aria-label="GreenRAN — Página inicial">
+                <span class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-extrabold">G</span>
+                GreenRAN
+            </a>
+            <ul class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-muted" role="menubar">
+                <li role="none"><a href="#sobre" role="menuitem" class="nav-link">Sobre</a></li>
+                <li role="none"><a href="#testbed" role="menuitem" class="nav-link">Testbed</a></li>
+                <li role="none"><a href="#documentacao" role="menuitem" class="nav-link">Documentação</a></li>
+                <li role="none"><a href="#pesquisadores" role="menuitem" class="nav-link">Pesquisadores</a></li>
+            </ul>
+            <div class="hidden lg:flex items-center gap-3">
+                <button id="darkToggle" class="w-9 h-9 rounded-lg border border-[var(--color-border)] flex items-center justify-center text-muted hover:text-primary hover:border-primary transition-colors" aria-label="Alternar modo escuro">
+                    <svg id="darkIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <a href="#testbed" class="btn-primary">Acessar Testbed</a>
+            </div>
+            <button id="mobileMenuBtn" class="lg:hidden w-9 h-9 rounded-lg border border-[var(--color-border)] flex items-center justify-center text-muted" aria-label="Abrir menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="lg:hidden hidden px-6 pb-6 bg-[var(--color-nav-bg)] border-b border-[var(--color-border)] transition-colors">
+            <ul class="flex flex-col gap-3 text-[15px] font-medium text-muted">
+                <li><a href="#sobre" class="block py-2 mobile-nav-link">Sobre</a></li>
+                <li><a href="#testbed" class="block py-2 mobile-nav-link">Testbed</a></li>
+                <li><a href="#documentacao" class="block py-2 mobile-nav-link">Documentação</a></li>
+                <li><a href="#pesquisadores" class="block py-2 mobile-nav-link">Pesquisadores</a></li>
+                <li class="pt-2"><a href="#testbed" class="btn-primary w-full text-center inline-block">Acessar Testbed</a></li>
+                <li><button id="darkToggleMobile" class="flex items-center gap-2 py-2 text-muted hover:text-primary transition-colors" aria-label="Alternar modo escuro">🌙 Modo Escuro</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="pt-[104px] pb-20 lg:pb-28">
+        <div class="max-w-site mx-auto px-6 text-center">
+            <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">Projeto RNP — Open RAN @Brasil</span>
+            <h1 class="text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-6 max-w-4xl mx-auto">
+                Infraestrutura Open RAN sustentável para pesquisa e inovação em 5G
+            </h1>
+            <p class="text-lg lg:text-xl text-muted max-w-3xl mx-auto mb-10 leading-relaxed">
+                Desenvolva, teste e valide soluções com xApps, rApps e IA em redes abertas — do campo ao campus inteligente.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#testbed" class="btn-primary text-base px-8 py-3.5">Acessar Testbed</a>
+                <a href="#documentacao" class="btn-secondary text-base px-8 py-3.5">Ver Documentação</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== SOBRE O PROJETO ===== -->
+        <section id="sobre" class="section py-20 lg:py-28 reveal" aria-labelledby="sobre-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Sobre o Projeto</span>
+                    <h2 id="sobre-heading" class="text-3xl lg:text-4xl font-bold mb-4">O que é o GreenRAN?</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Uma iniciativa nacional que integra Open RAN, inteligência artificial e eficiência energética para transformar o agronegócio e os campi universitários brasileiros.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card p-8">
+                        <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Eficiência Energética</h3>
+                        <p class="text-muted text-sm leading-relaxed">xApps e rApps inteligentes para reduzir o consumo de energia em redes Open RAN, com desligamento dinâmico de células e otimização de recursos.</p>
+                    </div>
+                    <div class="card p-8">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9333EA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">IA + 5G</h3>
+                        <p class="text-muted text-sm leading-relaxed">Agentic AI Green integrado ao RIC para interpretar intenções em linguagem natural e traduzi-las em políticas de rede automatizadas.</p>
+                    </div>
+                    <div class="card p-8">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Agro & Smart Campus</h3>
+                        <p class="text-muted text-sm leading-relaxed">Casos de uso reais: estimativa de peso de gado por visão computacional, sensoriamento de solo e vigilância inteligente no campus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CAPACIDADES ===== -->
+        <section class="section py-20 lg:py-28 reveal bg-white dark:bg-[#0F172A]" aria-labelledby="capacidades-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Capacidades</span>
+                    <h2 id="capacidades-heading" class="text-3xl lg:text-4xl font-bold mb-4">Plataforma de Experimentação</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Ferramentas e ambientes para pesquisadores e desenvolvedores criarem a próxima geração de aplicações 5G.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card p-6 text-center hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">RAN Slicing</h3>
+                        <p class="text-muted text-sm">Particionamento dinâmico da rede para isolar tráfego de diferentes aplicações com garantias de QoS.</p>
+                    </div>
+                    <div class="card p-6 text-center hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">xApps e rApps</h3>
+                        <p class="text-muted text-sm">Desenvolvimento de aplicações de controle em tempo real (xApps) e não tempo real (rApps) sobre o RIC.</p>
+                    </div>
+                    <div class="card p-6 text-center hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Agentic AI Green</h3>
+                        <p class="text-muted text-sm">IA agêntica para interpretar intenções de rede e automatizar configurações com foco em sustentabilidade.</p>
+                    </div>
+                    <div class="card p-6 text-center hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Monitoramento IoT</h3>
+                        <p class="text-muted text-sm">Rede de sensores sem fio para coleta de dados ambientais e agrícolas com transmissão via 5G.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTBED ===== -->
+        <section id="testbed" class="section py-20 lg:py-28 reveal" aria-labelledby="testbed-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary mb-4">Testbed</span>
+                        <h2 id="testbed-heading" class="text-3xl lg:text-4xl font-bold mb-6">Infraestrutura Real de Experimentação</h2>
+                        <p class="text-muted leading-relaxed mb-4">O testbed GreenRAN oferece uma rede 5G Open RAN completa — da borda ao núcleo — integrada ao RIC (<em>RAN Intelligent Controller</em>) para desenvolvimento e validação de xApps e rApps em condições reais.</p>
+                        <p class="text-muted leading-relaxed mb-6">Pesquisadores têm acesso a um ambiente controlado com suporte a RAN slicing, economia de energia, ISAC (<em>Integrated Sensing and Communication</em>) e monitoramento via data lake unificado.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-muted">
+                                <svg class="mt-0.5 shrink-0 text-secondary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Rádios 5G Open RAN com suporte a múltiplas bandas
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-muted">
+                                <svg class="mt-0.5 shrink-0 text-secondary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Core 5G open source integrado ao RIC Near-RT
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-muted">
+                                <svg class="mt-0.5 shrink-0 text-secondary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Ambiente de experimentação para xApps e rApps
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-muted">
+                                <svg class="mt-0.5 shrink-0 text-secondary" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Data lake para armazenamento de métricas da rede
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-primary text-base px-8 py-3.5">Solicitar Acesso</a>
+                    </div>
+                    <div class="card p-8 rounded-card">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                                <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                                <span class="text-sm font-medium">RU — Radio Unit (O-RU)</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 ml-8">
+                                <div class="w-3 h-3 rounded-full bg-indigo-500"></div>
+                                <span class="text-sm font-medium">DU — Distributed Unit (O-DU)</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-purple-50 dark:bg-purple-900/20 ml-16">
+                                <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+                                <span class="text-sm font-medium">CU — Central Unit (O-CU)</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 ml-8">
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="text-sm font-medium">RIC — Near-RT RIC + xApps</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20 ml-16">
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <span class="text-sm font-medium">rApps — Non-RT RIC</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-slate-100 dark:bg-slate-800 ml-24">
+                                <div class="w-3 h-3 rounded-full bg-slate-500"></div>
+                                <span class="text-sm font-medium">5G Core — Open Source</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-muted mt-6 text-center">Arquitetura simplificada do testbed GreenRAN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMO FUNCIONA ===== -->
+        <section id="como-funciona" class="section py-20 lg:py-28 reveal bg-white dark:bg-[#0F172A]" aria-labelledby="como-funciona-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Processo</span>
+                    <h2 id="como-funciona-heading" class="text-3xl lg:text-4xl font-bold mb-4">Como Funciona</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Quatro etapas simples para começar a experimentar com a plataforma GreenRAN.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card p-6 relative">
+                        <span class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</span>
+                        <h3 class="font-semibold mt-4 mb-2">Cadastro</h3>
+                        <p class="text-muted text-sm">Pesquisadores e instituições parceiras submetem o formulário de cadastro com escopo da pesquisa.</p>
+                    </div>
+                    <div class="card p-6 relative">
+                        <span class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">2</span>
+                        <h3 class="font-semibold mt-4 mb-2">Aprovação</h3>
+                        <p class="text-muted text-sm">O comitê gestor avalia a proposta e libera o acesso com os recursos adequados ao experimento.</p>
+                    </div>
+                    <div class="card p-6 relative">
+                        <span class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">3</span>
+                        <h3 class="font-semibold mt-4 mb-2">Acesso ao Ambiente</h3>
+                        <p class="text-muted text-sm">Credenciais e documentação para acessar o testbed, submeter xApps/rApps e coletar métricas.</p>
+                    </div>
+                    <div class="card p-6 relative">
+                        <span class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">4</span>
+                        <h3 class="font-semibold mt-4 mb-2">Testes e Validação</h3>
+                        <p class="text-muted text-sm">Execute experimentos, colete resultados e publique achados com suporte da equipe GreenRAN.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CASOS DE USO ===== -->
+        <section id="casos-de-uso" class="section py-20 lg:py-28 reveal" aria-labelledby="casos-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Casos de Uso</span>
+                    <h2 id="casos-heading" class="text-3xl lg:text-4xl font-bold mb-4">Aplicações em Campo</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Casos de uso reais que demonstram o potencial da integração entre 5G, Open RAN e inteligência artificial.</p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- C1 - Agro Inteligente -->
+                    <div class="card overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-2 6-1 9 0"/><path d="M3 13c3-1 6 0 9 0"/><path d="M7 21h10"/><rect x="9" y="3" width="6" height="8" rx="1"/></svg>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-green-600 dark:text-green-400">C1 — Agro Inteligente</span>
+                            <h3 class="text-lg font-semibold mt-2 mb-3">Estimativa de Peso de Gado</h3>
+                            <p class="text-muted text-sm leading-relaxed mb-4">Uso de visão computacional e IA para estimar o peso de gado bovino e bubalino a partir de imagens capturadas por drones com câmera LiDAR, processadas na borda da rede 5G.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">Visão Computacional</span>
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">Drones LiDAR</span>
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">Edge Computing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- C2 - Monitoramento do Solo -->
+                    <div class="card overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">C2 — Monitoramento do Solo</span>
+                            <h3 class="text-lg font-semibold mt-2 mb-3">Sensores + IA para o Solo</h3>
+                            <p class="text-muted text-sm leading-relaxed mb-4">Rede de sensores sem fio resiliente em ambiente rural, coletando dados de umidade, pH e nutrientes do solo, com transmissão via 5G para análise por IA no data lake.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">IoT Rural</span>
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">Sensores Sem Fio</span>
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">Data Lake</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- C3 - Vigilância Inteligente -->
+                    <div class="card overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-red-600 dark:text-red-400">C3 — Vigilância Inteligente</span>
+                            <h3 class="text-lg font-semibold mt-2 mb-3">IA + Vídeo em Tempo Real</h3>
+                            <p class="text-muted text-sm leading-relaxed mb-4">Infraestrutura de câmeras conectadas à rede 5G com IA para detecção de situações de violência no campus universitário, com alertas em tempo real.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">Vídeo Analytics</span>
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">Detecção de Violência</span>
+                                <span class="px-2 py-0.5 rounded-md text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">Tempo Real</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ARQUITETURA ===== -->
+        <section id="arquitetura" class="section py-20 lg:py-28 reveal bg-white dark:bg-[#0F172A]" aria-labelledby="arquitetura-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Arquitetura</span>
+                    <h2 id="arquitetura-heading" class="text-3xl lg:text-4xl font-bold mb-4">Visão Geral da Plataforma</h2>
+                    <p class="text-muted max-w-2xl mx-auto">A arquitetura GreenRAN integra ingestão de dados, inteligência artificial multimodal e infraestrutura de borda e nuvem.</p>
+                </div>
+                <div class="arch-diagram">
+                    <div class="arch-row">
+                        <div class="arch-block arch-block-blue">
+                            <span class="arch-label">Data Lake</span>
+                            <span class="arch-desc">Armazenamento unificado de métricas da rede e dados das aplicações</span>
+                        </div>
+                        <div class="arch-arrow">&rarr;</div>
+                        <div class="arch-block arch-block-purple">
+                            <span class="arch-label">IA Multimodal</span>
+                            <span class="arch-desc">Agentic AI, visão computacional, inferência em tempo real</span>
+                        </div>
+                    </div>
+                    <div class="arch-row">
+                        <div class="arch-connector"></div>
+                        <div class="arch-connector"></div>
+                    </div>
+                    <div class="arch-row">
+                        <div class="arch-block arch-block-green">
+                            <span class="arch-label">5G Ingestion</span>
+                            <span class="arch-desc">Open RAN + RIC + xApps/rApps + ISAC</span>
+                        </div>
+                        <div class="arch-arrow">&harr;</div>
+                        <div class="arch-block arch-block-amber">
+                            <span class="arch-label">Edge + Cloud</span>
+                            <span class="arch-desc">Processamento na borda, orquestração na nuvem, segurança QKD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DOCUMENTAÇÃO ===== -->
+        <section id="documentacao" class="section py-20 lg:py-28 reveal" aria-labelledby="documentacao-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Documentação</span>
+                    <h2 id="documentacao-heading" class="text-3xl lg:text-4xl font-bold mb-4">Recursos para Desenvolvedores</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Guias, APIs e referências técnicas para começar a desenvolver na plataforma GreenRAN.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="#" class="card p-6 hover:border-primary transition-colors group">
+                        <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">Guia de Início Rápido</h3>
+                        <p class="text-muted text-sm">Configure seu ambiente e execute seu primeiro xApp no testbed.</p>
+                    </a>
+                    <a href="#" class="card p-6 hover:border-primary transition-colors group">
+                        <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">API do RIC</h3>
+                        <p class="text-muted text-sm">Referência completa das interfaces E2, A1 e O1 do RAN Intelligent Controller.</p>
+                    </a>
+                    <a href="#" class="card p-6 hover:border-primary transition-colors group">
+                        <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">SDK xApp</h3>
+                        <p class="text-muted text-sm">Bibliotecas e exemplos para desenvolvimento de xApps em Python e C++.</p>
+                    </a>
+                    <a href="#" class="card p-6 hover:border-primary transition-colors group">
+                        <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">Guia de Segurança</h3>
+                        <p class="text-muted text-sm">Boas práticas de segurança para redes Open RAN e proteção contra ataques de evasão.</p>
+                    </a>
+                    <a href="#" class="card p-6 hover:border-primary transition-colors group">
+                        <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">Data Lake Schema</h3>
+                        <p class="text-muted text-sm">Esquema de dados e APIs para ingestão e consulta de métricas da rede.</p>
+                    </a>
+                    <a href="#" class="card p-6 hover:border-primary transition-colors group">
+                        <h3 class="font-semibold mb-2 group-hover:text-primary transition-colors">Casos de Uso</h3>
+                        <p class="text-muted text-sm">Exemplos completos de aplicações dos casos C1, C2, C3 e C4.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PESQUISADORES ===== -->
+        <section id="pesquisadores" class="section py-20 lg:py-28 reveal bg-white dark:bg-[#0F172A]" aria-labelledby="pesquisadores-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Equipe</span>
+                    <h2 id="pesquisadores-heading" class="text-3xl lg:text-4xl font-bold mb-4">Pesquisadores</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Equipe multidisciplinar de instituições nacionais e internacionais unindo expertise em redes, IA e segurança.</p>
+                </div>
+
+                <!-- UFPA -->
+                <div class="mb-14">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="w-2 h-8 rounded-full bg-primary"></span>
+                        <h3 class="text-xl font-bold">Universidade Federal do Pará (UFPA)</h3>
+                    </div>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Eduardo Cerqueira -->
+                        <div class="card researcher-card p-5" data-role="coordenador">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Eduardo Coelho Cerqueira</h4>
+                                    <p class="text-sm text-muted">Coordenador-Geral</p>
+                                </div>
+                                <span class="badge badge-coordenador">Coordenador-Geral</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação geral de PTs, governança e disseminação de resultados.</p>
+                            <a href="http://lattes.cnpq.br/1028151705135221" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Denis Rosário -->
+                        <div class="card researcher-card p-5" data-role="ia">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Denis Lima do Rosário</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-ia">IA & Visão</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do caso de uso C3 — Vigilância do campus por vídeo e IA.</p>
+                            <a href="https://lattes.cnpq.br/8273198217435163" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Aldebaro Klautau -->
+                        <div class="card researcher-card p-5" data-role="xapps">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Aldebaro Klautau Júnior</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-xapps">xApps & RAN</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação da Solução ORAN-Green: controle de funções de rede e xApps/rApps.</p>
+                            <a href="http://lattes.cnpq.br/1596629769697284" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Cleverson Nahum -->
+                        <div class="card researcher-card p-5" data-role="xapps">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Cleverson Veloso Nahum</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-xapps">xApps & RAN</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Desenvolvimento de xApps de RAN slicing e ISAC, rApp de otimização e monitoramento.</p>
+                            <a href="http://lattes.cnpq.br/7543077490926584" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Glauco Gonçalves -->
+                        <div class="card researcher-card p-5" data-role="xapps">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Glauco Estácio Gonçalves</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-xapps">xApps & RAN</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do xApp de economia de energia e rApp de otimização de recursos.</p>
+                            <a href="http://lattes.cnpq.br/6157118581200722" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Diogo Nunes -->
+                        <div class="card researcher-card p-5" data-role="ia">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Diogo Lobato Acatauassú Nunes</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-ia">IA & Visão</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do caso C1 — Estimativa de peso de gado por visão computacional e IA.</p>
+                            <a href="http://lattes.cnpq.br/1972007941497086" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- André Riker -->
+                        <div class="card researcher-card p-5" data-role="seguranca">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">André Figueira Riker</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-seguranca">Segurança</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do arcabouço de segurança Open RAN, QKD e defesa contra ataques de evasão.</p>
+                            <a href="http://lattes.cnpq.br/2949449810540513" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Roberto Araujo -->
+                        <div class="card researcher-card p-5" data-role="seguranca">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Roberto Samarone Araujo</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-seguranca">Segurança</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Avaliação da solução ORAN-Green, análise de ameaças e integração da camada QKD.</p>
+                            <a href="http://lattes.cnpq.br/6894507054383644" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Diego Cardoso -->
+                        <div class="card researcher-card p-5" data-role="iot">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Diego Lisboa Cardoso</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-iot">IoT & Sensores</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do caso C4 — Rede de sensores para monitoramento ambiental no campus.</p>
+                            <a href="http://lattes.cnpq.br/0507944343674734" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Bruno Castro -->
+                        <div class="card researcher-card p-5" data-role="ia">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Bruno Sousa Lyra Castro</h4>
+                                    <p class="text-sm text-muted">UFPA</p>
+                                </div>
+                                <span class="badge badge-ia">IA & Visão</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Desenvolvimento de métodos de IA e visão computacional para estimativa de peso de gado (C1).</p>
+                            <a href="http://lattes.cnpq.br/1897829604434609" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outras Instituições Nacionais -->
+                <div class="mb-14">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="w-2 h-8 rounded-full bg-secondary"></span>
+                        <h3 class="text-xl font-bold">Outras Instituições Nacionais</h3>
+                    </div>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Diego Gomes (UNIFESSPA) -->
+                        <div class="card researcher-card p-5" data-role="iot">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Diego de Azevedo Gomes</h4>
+                                    <p class="text-sm text-muted">UNIFESSPA</p>
+                                </div>
+                                <span class="badge badge-iot">IoT & Sensores</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Rede de sensores sem fio para ambiente rural e transmissão para data lake (C2).</p>
+                            <a href="http://lattes.cnpq.br/5116561408505726" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Hugo Santos (UEPA) -->
+                        <div class="card researcher-card p-5" data-role="datalake">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Hugo Leonardo Melo dos Santos</h4>
+                                    <p class="text-sm text-muted">UEPA</p>
+                                </div>
+                                <span class="badge badge-datalake">Data Lake</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação da criação do data lake para armazenamento de informações da Rede-5G-Green.</p>
+                            <a href="http://lattes.cnpq.br/5229753727213953" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Allan Costa (UFRA) -->
+                        <div class="card researcher-card p-5" data-role="ia">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Allan Douglas Costa</h4>
+                                    <p class="text-sm text-muted">UFRA</p>
+                                </div>
+                                <span class="badge badge-ia">IA & Visão</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Montagem de drone com câmera LiDAR e captura de imagens para inferência de peso de gado (C1).</p>
+                            <a href="http://lattes.cnpq.br/2599065838802816" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Walkymario Lemos (EMBRAPA) -->
+                        <div class="card researcher-card p-5" data-role="consultor">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Walkymario de Paulo Lemos</h4>
+                                    <p class="text-sm text-muted">Embrapa Amazônia Oriental</p>
+                                </div>
+                                <span class="badge badge-consultor">Consultor</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Consultor para qualidade das aplicações do caso C2 — sensores para gestão e análise do solo.</p>
+                            <a href="http://lattes.cnpq.br/6841621785311887" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Carlos Trujillo (UNICAMP) -->
+                        <div class="card researcher-card p-5" data-role="ia">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Carlos A. Astudillo Trujillo</h4>
+                                    <p class="text-sm text-muted">UNICAMP</p>
+                                </div>
+                                <span class="badge badge-ia">IA & Visão</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do Agentic-AI-Green: interpretação de intenções em linguagem natural.</p>
+                            <a href="http://lattes.cnpq.br/6919944107124065" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                        <!-- Weverton Cordeiro (UFRGS) -->
+                        <div class="card researcher-card p-5" data-role="xapps">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Weverton Luis da Costa Cordeiro</h4>
+                                    <p class="text-sm text-muted">UFRGS</p>
+                                </div>
+                                <span class="badge badge-xapps">xApps & RAN</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Coordenação do xApp de RAN slicing e rApp para otimização de recursos.</p>
+                            <a href="http://lattes.cnpq.br/0458322041606755" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">Lattes <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internacional -->
+                <div>
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="w-2 h-8 rounded-full bg-green-500"></span>
+                        <h3 class="text-xl font-bold">Internacional</h3>
+                    </div>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Susana Sargento -->
+                        <div class="card researcher-card p-5 border-green-200 dark:border-green-800" data-role="consultor">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="font-semibold">Susana Isabel B. M. Sargento</h4>
+                                    <p class="text-sm text-muted">Universidade de Aveiro, Portugal</p>
+                                </div>
+                                <span class="badge badge-internacional">Internacional</span>
+                            </div>
+                            <p class="text-xs text-muted leading-relaxed mb-3">Consultora para implementação da Rede-5G-Green. Experiência com living lab Open RAN em Aveiro.</p>
+                            <a href="https://www.ua.pt/pt/p/10319259" target="_blank" rel="noopener" class="text-xs text-secondary hover:underline flex items-center gap-1">CV UA <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PARCEIROS ===== -->
+        <section class="section py-20 lg:py-28 reveal" aria-labelledby="parceiros-heading">
+            <div class="max-w-site mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">Parceiros</span>
+                    <h2 id="parceiros-heading" class="text-3xl lg:text-4xl font-bold mb-4">Instituições Participantes</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Rede de colaboração entre as principais universidades e centros de pesquisa do Brasil e exterior.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="card px-4 py-8 flex items-center justify-center partner-card">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
+                                <span class="font-extrabold text-primary text-lg">UFPA</span>
+                            </div>
+                            <span class="text-xs text-muted font-medium">UFPA</span>
+                        </div>
+                    </div>
+                    <div class="card px-4 py-8 flex items-center justify-center partner-card">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mx-auto mb-2">
+                                <span class="font-extrabold text-secondary text-lg">UC</span>
+                            </div>
+                            <span class="text-xs text-muted font-medium">UNICAMP</span>
+                        </div>
+                    </div>
+                    <div class="card px-4 py-8 flex items-center justify-center partner-card">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mx-auto mb-2">
+                                <span class="font-extrabold text-indigo-600 dark:text-indigo-400 text-lg">UFRGS</span>
+                            </div>
+                            <span class="text-xs text-muted font-medium">UFRGS</span>
+                        </div>
+                    </div>
+                    <div class="card px-4 py-8 flex items-center justify-center partner-card">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-2">
+                                <span class="font-extrabold text-green-600 dark:text-green-400 text-sm">EMB</span>
+                            </div>
+                            <span class="text-xs text-muted font-medium">EMBRAPA</span>
+                        </div>
+                    </div>
+                    <div class="card px-4 py-8 flex items-center justify-center partner-card">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mx-auto mb-2">
+                                <span class="font-extrabold text-amber-600 dark:text-amber-400 text-sm">UEPA</span>
+                            </div>
+                            <span class="text-xs text-muted font-medium">UEPA</span>
+                        </div>
+                    </div>
+                    <div class="card px-4 py-8 flex items-center justify-center partner-card">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center mx-auto mb-2">
+                                <span class="font-extrabold text-teal-600 dark:text-teal-400 text-sm">UFRA</span>
+                            </div>
+                            <span class="text-xs text-muted font-medium">UFRA</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-xs text-muted mt-8">Em parceria com a <strong>RNP</strong> — Rede Nacional de Ensino e Pesquisa</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 py-16" role="contentinfo">
+        <div class="max-w-site mx-auto px-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 font-bold text-lg text-white mb-4">
+                        <span class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-white text-xs font-extrabold">G</span>
+                        GreenRAN
+                    </div>
+                    <p class="text-sm leading-relaxed">Infraestrutura Open RAN sustentável para pesquisa e inovação em 5G no Brasil.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#sobre" class="hover:text-white transition-colors">Sobre</a></li>
+                        <li><a href="#testbed" class="hover:text-white transition-colors">Testbed</a></li>
+                        <li><a href="#documentacao" class="hover:text-white transition-colors">Documentação</a></li>
+                        <li><a href="#pesquisadores" class="hover:text-white transition-colors">Pesquisadores</a></li>
+                        <li><a href="#casos-de-uso" class="hover:text-white transition-colors">Casos de Uso</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Recursos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Guia de Início Rápido</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API do RIC</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">SDK xApp</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guia de Segurança</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Data Lake Schema</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contato</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Universidade Federal do Pará</li>
+                        <li>Belém — Pará, Brasil</li>
+                        <li><a href="mailto:contato@greenran.org" class="hover:text-white transition-colors">contato@greenran.org</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; 2025 GreenRAN. Todos os direitos reservados.</p>
+                <p>Projeto financiado pela RNP — Rede Nacional de Ensino e Pesquisa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
