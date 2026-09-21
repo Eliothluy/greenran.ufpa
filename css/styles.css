@@ -1,6 +1,21 @@
+/* ======================================================================
+   GreenRAN design tokens and components.
+   This file is the single source of truth for brand tokens.
+   tailwind.config.js mirrors these values for utility generation only.
+   Rebuild utilities: npx tailwindcss@3.4.17 -c tailwind.config.js -i src/input.css -o css/tailwind.css --minify
+   ====================================================================== */
+
+/* ===== SELF-HOSTED INTER (woff2, latin) ===== */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/inter-latin-400.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/inter-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/inter-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('../fonts/inter-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap; src: url('../fonts/inter-latin-800.woff2') format('woff2'); }
+
 /* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
     --color-primary: #1E40AF;
+    --color-primary-hover: #1E3A8A;
     --color-secondary: #3B82F6;
     --color-bg: #F9FAFB;
     --color-text: #111827;
@@ -31,7 +46,7 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== BASE STYLES ===== */
+/* ===== BASE ===== */
 html {
     scroll-behavior: smooth;
 }
@@ -40,6 +55,43 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text);
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2 {
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    text-wrap: balance;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--color-primary);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 0 0 10px 0;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+/* ===== SECTION SPACING (single source of vertical rhythm) ===== */
+.section {
+    padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .section {
+        padding-block: 7rem;
+    }
 }
 
 /* ===== BUTTONS ===== */
@@ -61,10 +113,14 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #1E3A8A;
-    border-color: #1E3A8A;
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
 .btn-secondary {
@@ -89,6 +145,10 @@ body {
     color: #FFFFFF;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
 }
 
 /* ===== NAVBAR ===== */
@@ -117,7 +177,8 @@ body {
     transition: width var(--transition-base);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
     width: 100%;
 }
 
@@ -129,6 +190,39 @@ body {
 
 .mobile-nav-link:hover {
     color: var(--color-primary);
+}
+
+/* ===== HERO ===== */
+.hero-figure {
+    position: relative;
+    margin: 0;
+}
+
+.hero-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    background: linear-gradient(160deg, rgba(30, 64, 175, 0.22), rgba(59, 130, 246, 0.06) 55%, transparent 72%);
+    pointer-events: none;
+}
+
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero-entry {
+        opacity: 0;
+        animation: hero-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
 }
 
 /* ===== CARDS ===== */
@@ -145,6 +239,13 @@ body {
     border-color: var(--color-secondary);
 }
 
+/* Non-interactive cards must not fake interactivity */
+.card-static:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--color-border);
+    transform: none;
+}
+
 /* ===== RESEARCHER CARDS ===== */
 .researcher-card {
     transition: all var(--transition-base);
@@ -155,7 +256,8 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-/* Badges */
+/* Badges: two-tone system. Blue for leadership / international emphasis,
+   neutral for role categories. Category meaning lives in the label text. */
 .badge {
     font-size: 10px;
     font-weight: 600;
@@ -167,76 +269,54 @@ body {
     flex-shrink: 0;
 }
 
-.badge-coordenador {
+.badge-coordenador,
+.badge-internacional {
     background-color: #DBEAFE;
     color: #1E40AF;
 }
-.dark .badge-coordenador {
-    background-color: rgba(30, 64, 175, 0.25);
+.dark .badge-coordenador,
+.dark .badge-internacional {
+    background-color: rgba(30, 64, 175, 0.3);
     color: #93C5FD;
 }
 
-.badge-xapps {
-    background-color: #DCFCE7;
-    color: #166534;
-}
-.dark .badge-xapps {
-    background-color: rgba(22, 101, 52, 0.25);
-    color: #86EFAC;
-}
-
-.badge-ia {
-    background-color: #F3E8FF;
-    color: #6B21A8;
-}
-.dark .badge-ia {
-    background-color: rgba(107, 33, 168, 0.25);
-    color: #D8B4FE;
-}
-
-.badge-seguranca {
-    background-color: #FEE2E2;
-    color: #991B1B;
-}
-.dark .badge-seguranca {
-    background-color: rgba(153, 27, 27, 0.25);
-    color: #FCA5A5;
-}
-
-.badge-iot {
-    background-color: #FEF3C7;
-    color: #92400E;
-}
-.dark .badge-iot {
-    background-color: rgba(146, 64, 14, 0.25);
-    color: #FCD34D;
-}
-
-.badge-datalake {
-    background-color: #CFFAFE;
-    color: #155E75;
-}
-.dark .badge-datalake {
-    background-color: rgba(21, 94, 117, 0.25);
-    color: #67E8F9;
-}
-
+.badge-xapps,
+.badge-ia,
+.badge-seguranca,
+.badge-iot,
+.badge-datalake,
 .badge-consultor {
     background-color: #F3F4F6;
-    color: #374151;
+    color: #4B5563;
 }
+.dark .badge-xapps,
+.dark .badge-ia,
+.dark .badge-seguranca,
+.dark .badge-iot,
+.dark .badge-datalake,
 .dark .badge-consultor {
-    background-color: rgba(55, 65, 81, 0.4);
-    color: #D1D5DB;
+    background-color: rgba(148, 163, 184, 0.16);
+    color: #CBD5E1;
 }
 
-.badge-internacional {
-    background-color: #D1FAE5;
-    color: #065F46;
+/* ===== "EM BREVE" TAG ===== */
+.tag-soon {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background-color: #F3F4F6;
+    color: #4B5563;
+    white-space: nowrap;
 }
-.dark .badge-internacional {
-    background-color: rgba(6, 95, 70, 0.25);
-    color: #6EE7B7;
+
+footer .tag-soon,
+.dark .tag-soon {
+    background-color: rgba(148, 163, 184, 0.16);
+    color: #CBD5E1;
 }
 
 /* ===== PARTNER CARDS ===== */
@@ -250,7 +330,7 @@ body {
     border-color: var(--color-primary);
 }
 
-/* ===== ARCHITECTURE DIAGRAM ===== */
+/* ===== ARCHITECTURE DIAGRAM (blue family only) ===== */
 .arch-diagram {
     max-width: 800px;
     margin: 0 auto;
@@ -288,7 +368,7 @@ body {
 .arch-desc {
     display: block;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.4;
 }
 
@@ -296,16 +376,8 @@ body {
     background: linear-gradient(135deg, #1E40AF, #3B82F6);
 }
 
-.arch-block-purple {
-    background: linear-gradient(135deg, #6D28D9, #8B5CF6);
-}
-
-.arch-block-green {
-    background: linear-gradient(135deg, #059669, #10B981);
-}
-
-.arch-block-amber {
-    background: linear-gradient(135deg, #D97706, #F59E0B);
+.arch-block-navy {
+    background: linear-gradient(135deg, #172554, #1E3A8A);
 }
 
 .arch-arrow {
@@ -355,6 +427,36 @@ body {
     transform: translateY(0);
 }
 
+/* ===== REDUCED MOTION (mandatory) ===== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal,
+    .reveal-stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .hero-entry {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .card,
+    .researcher-card,
+    .partner-card,
+    .arch-block,
+    .btn-primary,
+    .btn-secondary {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (max-width: 768px) {
     .arch-row {
@@ -401,12 +503,12 @@ button:focus-visible {
     border-radius: 4px;
 }
 
-/* ===== SECTION ALTERNATING ===== */
+/* ===== SECTION ALTERNATING (single source of banding) ===== */
 section:nth-child(even) {
     background-color: var(--color-white);
 }
 .dark section:nth-child(even) {
-    background-color: #0F172A;
+    background-color: #111D36;
 }
 
 section:nth-child(odd) {
