@@ -246,18 +246,6 @@ h1 {
     transform: none;
 }
 
-/* Filled feature cell. Declared here (not as bg-primary utility) because
-   this sheet loads after the utility stylesheet and .card would win the tie. */
-.card-feature {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.card-feature:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
 /* Subtle accent border (international researcher card) */
 .card-accent {
     border-color: #BFDBFE;
